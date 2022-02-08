@@ -13,6 +13,8 @@ router.get('/customer/:id', customer_controller.customer_get_ID)
 
 router.post('/customer/:id/delete', customer_controller.customer_delete_ID)
 
+router.post('/customer/:id/update', customer_controller.customer_update_ID)
+
 // router.get('/',(req,res)=>{
 //     res.send('Wiki home page.')
 // })

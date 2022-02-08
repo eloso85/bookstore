@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require('express')
-var customerRoutes = require('./routes/customerRoutes')
+
+//routes
+var customerRoutes = require('./routes/customerRoutes');
+var bookRoutes = require('./routes/bookRoutes');
 
 const app = express();
 const port = 5000;
@@ -13,6 +16,7 @@ require('./db/db');
 app.use(express.json())
 
 app.use('/customers', customerRoutes);
+app.use('/books', bookRoutes);
 
 
 

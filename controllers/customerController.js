@@ -45,3 +45,15 @@ exports.customer_delete_ID =((req, res) => {
            res.status(500).send('Internal Server Error!');
       });
 })
+
+exports.customer_update_ID = ((req, res)=>{
+    Customer.findByIdAndUpdate(req.params.id, req.body).then((update)=>{
+        if(update){
+            res.json('Customer updated Successfully!')
+        }else {
+            res.status(404).send('Customer not updated')
+        }
+    }).catch((err)=>{
+        res.status(500).send('Internal Server Error')
+    })
+})
