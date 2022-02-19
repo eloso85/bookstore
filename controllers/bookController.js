@@ -21,6 +21,18 @@ exports.book_add = ((req, res)=>{
     })
 })
 
+exports.get_book_byID = ((req, res)=>{
+    Book.findById(req.params.id).then((book)=>{
+        if(book){
+            res.json(book)
+        } else {
+            res.status(404).send('Books not found')
+        }
+    }).catch((err)=>{
+        res.status(500).send(`Internal Server Error ${err}`)
+    })
+})
+
 exports.book_update = ((req, res)=>{
     Book.findByIdAndUpdate(req.params.id, req.body).then((book)=>{
         if(book){
@@ -29,6 +41,18 @@ exports.book_update = ((req, res)=>{
             res.status(500).send('error updating book')
         }
     })
+})
+
+exports.delete_book_byID =((req,res)=>{
+    Book.findByIdAndRemove(req.params.id).then((book)=>{
+        if (book){
+            res.json(`${book} Book deleted Successfully`)
+        } else {
+            res.status(404).send(`${book} book not found`)
+        }
+    }).catch((err)=>{
+        res.status(500).send(`Internal Server error ${err}`)
+    });
 })
 
 // app.put('/student/:id', (req, res) => {
